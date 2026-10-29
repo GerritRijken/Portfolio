@@ -2,120 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gerrit Rijken — Illustration</title>
-<meta name="description" content="Picture books, comics and characters by illustrator Gerrit Rijken.">
+<meta name="description" content="Picture books, comics and caricature by Gerrit Rijken, illustrator in Bergen, Norway.">
+<meta property="og:title" content="Gerrit Rijken — Illustration">
+<meta property="og:description" content="Picture books, comics and caricature by Gerrit Rijken, illustrator in Bergen, Norway.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gerritrijken.github.io/Portfolio/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bangers&amp;family=Lilita+One&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,800&display=swap">
 <style>
-body{margin:0}
-a{color:#2A1D16}a:hover{color:#B8481F}
-.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px}
-.hero-name{font-size:88px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px}
-.panel{transition:transform .15s ease}
-.panel:hover{transform:translate(-3px,-3px)}
-.about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:28px}
-@media (max-width:760px){
-.hero,.about{grid-template-columns:minmax(0,1fr)}
-.hero-name{font-size:56px}
-.grid{grid-template-columns:minmax(0,1fr)}
-.wrap{padding-left:16px !important;padding-right:16px !important}
+/* Gallery layout: quiet frame, art first. Light and dark follow the visitor's system setting. */
+:root {
+  --bg: #f3f4f1; --fg: #1b1e24; --muted: #6a6f78; --line: #dcded9; --accent: #d94e24; --chip: #e6e8e3;
+  --font: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
 }
-@media (min-width:761px) and (max-width:1024px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #15171b; --fg: #ecedea; --muted: #9a9fa8; --line: #2c2f35; --accent: #f0784f; --chip: #23262c; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.gutter { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1180px; margin: 0 auto; }
+
+header .wrap { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; padding-block: 28px 18px; }
+.name { font-weight: 800; font-size: 22px; letter-spacing: -.01em; text-decoration: none; }
+.name span { color: var(--accent); }
+header nav { display: flex; gap: 22px; font-size: 15px; }
+header nav a { text-decoration: none; color: var(--muted); }
+header nav a:hover { color: var(--fg); }
+
+.intro .wrap { padding-block: 28px 36px; display: grid; gap: 18px; }
+.intro h1 { font-size: clamp(32px, 5.4vw, 64px); line-height: 1.02; font-weight: 600; letter-spacing: -.025em; margin: 0; max-width: 17ch; text-wrap: balance; }
+.intro h1 em { font-style: normal; color: var(--accent); }
+.intro p { margin: 0; color: var(--muted); font-size: 17px; max-width: 52ch; line-height: 1.5; }
+
+.filters { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 20px; }
+.filters button { font: 500 14px var(--font); color: var(--fg); background: var(--chip); border: 0; border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.grid { columns: 2 340px; column-gap: 28px; }
+.piece { break-inside: avoid; margin: 0 0 34px; }
+.piece[hidden] { display: none; }
+.piece .frame { display: block; overflow: hidden; padding: 0; border: 0; background: none; width: 100%; cursor: zoom-in; }
+.piece img { width: 100%; transition: transform .35s ease; }
+.piece:hover img { transform: scale(1.015); }
+.piece figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 10px; font-size: 14px; }
+.piece figcaption b { font-weight: 600; }
+.piece figcaption span { color: var(--muted); white-space: nowrap; }
+
+.split { border-top: 1px solid var(--line); }
+.split .wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; padding-block: 48px; }
+.split h2 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 4px 0 0; }
+.about p { margin: 0 0 14px; font-size: 18px; line-height: 1.55; max-width: 60ch; }
+.about dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; font-size: 15px; margin: 18px 0 0; }
+.about dt { color: var(--muted); }
+.about dd { margin: 0; }
+.contact .wrap { padding-block: 48px 64px; }
+.mail { font-size: clamp(24px, 4vw, 44px); font-weight: 600; letter-spacing: -.02em; overflow-wrap: anywhere; text-decoration: none; }
+.mail:hover { color: var(--accent); }
+.contact .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 14px; color: var(--muted); font-size: 15px; }
+.copy { font: 600 14px var(--font); border: 1px solid var(--fg); background: transparent; color: var(--fg); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+footer .wrap { padding-block: 0 32px; color: var(--muted); font-size: 14px; }
+
+.lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(8,10,14,.93); display: grid; place-items: center; padding: 20px; }
+.lightbox[hidden] { display: none; }
+.lightbox figure { margin: 0; display: grid; gap: 10px; justify-items: center; }
+.lightbox img { max-height: 84vh; width: auto; }
+.lightbox figcaption { color: #e9e9e6; font: 500 15px/1.4 var(--font); text-align: center; }
+.lightbox button { position: absolute; top: 16px; right: 16px; font: 600 14px var(--font); background: #fff; color: #111; border: 0; border-radius: 999px; padding: 10px 16px; cursor: pointer; }
+
+@media (max-width: 720px) { .split .wrap { grid-template-columns: 1fr; gap: 14px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
-<body id="top">
-<div style="background: #FFF4E2; color: #2A1D16; font-family: 'Nunito Sans', sans-serif; font-size: 16px; min-height: 100vh">
-<div class="wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 40px; box-sizing: border-box">
+<body>
 
-<header style="display: flex; justify-content: space-between; align-items: center; padding: 26px 0; border-bottom: 4px solid #2A1D16">
-<a href="#top" style="font-family: 'Lilita One', sans-serif; font-size: 30px; text-decoration: none; letter-spacing: 0.01em">GERRIT RIJKEN</a>
-<nav style="display: flex; gap: 6px; font-weight: 700; font-size: 16px">
-<a href="#work" style="padding: 12px 14px; text-decoration: none">Work</a>
-<a href="#about" style="padding: 12px 14px; text-decoration: none">About</a>
-<a href="#contact" style="padding: 10px 18px; text-decoration: none; background: #B8481F; color: #FFFFFF; border: 3px solid #2A1D16">Contact</a>
-</nav>
-</header>
+<header class="gutter"><div class="wrap">
+  <a class="name" href="#top" id="top">Gerrit Rijken<span>.</span></a>
+  <nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</div></header>
 
-<section class="hero" style="padding: 48px 0 72px">
-<div style="display: flex; flex-direction: column; gap: 28px; padding: 36px 32px; border: 4px solid #2A1D16; background-color: #E07A3A; background-image: radial-gradient(#E89556 2px, transparent 2.4px); background-size: 16px 16px; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; align-self: flex-start; padding: 22px 26px; background: #FFFFFF; border: 4px solid #2A1D16; border-radius: 28px">
-<h1 class="hero-name" style="margin: 0; font-family: 'Bangers', 'Lilita One', sans-serif; font-weight: 400; line-height: 0.95; letter-spacing: 0.03em">Hi! I'm Gerrit!</h1>
-<div style="position: absolute; left: 44px; bottom: -22px; width: 32px; height: 32px; background: #FFFFFF; border-right: 4px solid #2A1D16; border-bottom: 4px solid #2A1D16; transform: skewX(30deg) rotate(30deg)"></div>
-</div>
-<div style="padding: 14px 18px; background: #F5C451; border: 4px solid #2A1D16; font-size: 18px; line-height: 1.5; font-weight: 700; margin-top: 12px">Cartoonist of the weird ... and macabre?</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: auto">
-<a href="#work" style="padding: 14px 22px; background: #2A1D16; color: #FFF4E2; text-decoration: none; font-family: 'Lilita One', sans-serif; font-size: 18px; letter-spacing: 0.04em">SEE THE WORK</a>
-<a href="#contact" style="padding: 12px 20px; background: #FFFFFF; text-decoration: none; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 18px; letter-spacing: 0.04em">HIRE ME</a>
-</div>
-</div>
-<figure style="margin: 0; position: relative; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16; background: #2A1D16">
-<img src="images/chase.jpg" alt="A grinning old man with wild white hair drives a cream-and-orange car, his dog leaning out beside him, racing across a sunset desert away from a flaming tank" style="display: block; width: 100%; height: 100%; min-height: 420px; object-fit: cover">
-<figcaption style="position: absolute; right: -4px; bottom: -4px; padding: 8px 14px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 16px; letter-spacing: 0.04em">ALL ROADS LEAD TO NOWHERE</figcaption>
-</figure>
-</section>
+<main>
+  <section class="intro gutter"><div class="wrap">
+    <h1>Picture books, comics and caricature, usually with an <em>engine</em> in it.</h1>
+    <p>Illustrator based in Bergen, Norway. Drawing kids, grumpy old men, lizards in uniform and anything with wheels or rockets.</p>
+  </div></section>
 
-<div id="work" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; padding-bottom: 36px">
-<h2 style="margin: 0; font-family: 'Bangers', 'Lilita One', sans-serif; font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: 0.03em">MORE STORIES</h2>
-<div style="display: flex; gap: 10px; flex-wrap: wrap">
-<button style="font-family: 'Lilita One', sans-serif; font-size: 16px; letter-spacing: 0.04em; padding: 10px 18px; min-height: 44px; border: 3px solid #2A1D16; background: #2A1D16; color: #FFF4E2; cursor: pointer">ALL</button>
-<button style="font-family: 'Lilita One', sans-serif; font-size: 16px; letter-spacing: 0.04em; padding: 10px 18px; min-height: 44px; border: 3px solid #2A1D16; background: #FFFFFF; color: #2A1D16; cursor: pointer">PICTURE BOOKS</button>
-<button style="font-family: 'Lilita One', sans-serif; font-size: 16px; letter-spacing: 0.04em; padding: 10px 18px; min-height: 44px; border: 3px solid #2A1D16; background: #FFFFFF; color: #2A1D16; cursor: pointer">COMICS</button>
-<button style="font-family: 'Lilita One', sans-serif; font-size: 16px; letter-spacing: 0.04em; padding: 10px 18px; min-height: 44px; border: 3px solid #2A1D16; background: #FFFFFF; color: #2A1D16; cursor: pointer">CHARACTERS</button>
-</div>
+  <section class="gutter" id="work"><div class="wrap">
+    <div class="filters" role="group" aria-label="Filter work">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="picture-book" aria-pressed="false">Picture books</button>
+      <button type="button" data-f="comics" aria-pressed="false">Comics</button>
+      <button type="button" data-f="characters" aria-pressed="false">Characters &amp; caricature</button>
+    </div>
+
+    <!-- To add a piece: copy one <figure>, change the image, title, category label and data-cat
+         (picture-book, comics or characters). Put the image in the images folder. -->
+    <div class="grid">
+      <figure class="piece" data-cat="picture-book">
+        <button type="button" class="frame" aria-label="View The Cosmic Adventures of Spaceboy full size">
+          <img src="images/spaceboy.webp" width="2000" height="1414" alt="A red-haired kid and a little robot fly a red-and-white checked rocket past a ringed planet">
+        </button>
+        <figcaption><b>The Cosmic Adventures of Spaceboy</b><span>Picture book · 2026</span></figcaption>
+      </figure>
+      <figure class="piece" data-cat="comics">
+        <button type="button" class="frame" aria-label="View All Roads Lead to Nowhere full size">
+          <img src="images/roads.webp" width="2000" height="1414" loading="lazy" alt="A cackling old man and his dog flee in a yellow taxi from a furious Viking in a tank">
+        </button>
+        <figcaption><b>All Roads Lead to Nowhere</b><span>Comics · 2026</span></figcaption>
+      </figure>
+      <figure class="piece" data-cat="characters">
+        <button type="button" class="frame" aria-label="View Lizard Cop full size">
+          <img src="images/lizardcop.webp" width="1500" height="2000" loading="lazy" alt="A lizard police officer driving a monster-truck police car">
+        </button>
+        <figcaption><b>Lizard Cop</b><span>Characters · 2026</span></figcaption>
+      </figure>
+    </div>
+  </div></section>
+
+  <section class="split about gutter" id="about"><div class="wrap">
+    <h2>About</h2>
+    <div>
+      <p>I'm Gerrit, an illustrator from Bergen with a degree in visual communication. I started out drawing logos for black metal bands. These days I draw things that are a lot more colourful, and only slightly less strange.</p>
+      <p>Everything is drawn by hand, digitally, in Clip Studio Paint. When a scene needs it, I build my own reference models in Blender.</p>
+      <dl>
+        <dt>Available for</dt><dd>Picture books, chapter books, comics, editorial, caricature</dd>
+        <dt>Worked with</dt><dd>Dauthuz, Ghostheart Nebula, Vathr</dd>
+        <dt>Languages</dt><dd>Norwegian, English</dd>
+      </dl>
+    </div>
+  </div></section>
+
+  <section class="split contact gutter" id="contact"><div class="wrap">
+    <h2>Contact</h2>
+    <div>
+      <a class="mail" href="mailto:gerritrijken@gmail.com">gerritrijken@gmail.com</a>
+      <div class="row">
+        <button type="button" class="copy">Copy email</button>
+        <a href="https://www.instagram.com/tundratoucan/" rel="me">Instagram</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="gutter"><div class="wrap">© Gerrit Rijken</div></footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Illustration">
+  <button type="button" id="lb-close">Close</button>
+  <figure><img id="lb-img" alt=""><figcaption id="lb-cap"></figcaption></figure>
 </div>
 
-<div class="grid">
-<figure class="panel" style="margin: 0; position: relative; background: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; aspect-ratio: 1.414 / 1; background: #FBD9B5; overflow: hidden; border-bottom: 4px solid #2A1D16"><img src="images/rocket.jpg" alt="A red-haired child and a small robot fly a red-and-white checkered rocket through a blue starry sky toward a ringed green planet" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></div>
-<div style="position: absolute; top: -4px; left: -4px; padding: 6px 12px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">Picture book</div>
-<figcaption style="padding: 14px 16px; font-weight: 700; font-size: 16px">The Cosmic Adventures of Spaceboy</figcaption>
-</figure>
-<figure class="panel" style="margin: 0; position: relative; background: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; aspect-ratio: 1.414 / 1; background: #DCE7D2; overflow: hidden; border-bottom: 4px solid #2A1D16"><div style="position: absolute; width: 60%; height: 60%; border-radius: 40% 60% 55% 45%; background: #6E9478; left: 20%; top: 22%"></div><div style="position: absolute; width: 16%; aspect-ratio: 1; border-radius: 50%; background: #F5C451; left: 12%; top: 10%"></div></div>
-<div style="position: absolute; top: -4px; left: -4px; padding: 6px 12px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">Comic</div>
-<figcaption style="padding: 14px 16px; font-weight: 700; font-size: 16px">[Piece title]</figcaption>
-</figure>
-<figure class="panel" style="margin: 0; position: relative; background: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; aspect-ratio: 1.414 / 1; background: #4A3428; overflow: hidden; border-bottom: 4px solid #2A1D16"><div style="position: absolute; width: 50%; aspect-ratio: 1; border-radius: 50%; background: #F4E4C1; left: 25%; top: 18%"></div><div style="position: absolute; width: 100%; height: 30%; background: #2E211B; bottom: 0"></div></div>
-<div style="position: absolute; top: -4px; left: -4px; padding: 6px 12px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">Character</div>
-<figcaption style="padding: 14px 16px; font-weight: 700; font-size: 16px">[Piece title]</figcaption>
-</figure>
-<figure class="panel" style="margin: 0; position: relative; background: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; aspect-ratio: 1.414 / 1; background: #F3D9D2; overflow: hidden; border-bottom: 4px solid #2A1D16"><div style="position: absolute; width: 70%; height: 20%; border-radius: 999px; background: #B8481F; left: 15%; top: 40%; transform: rotate(-12deg)"></div><div style="position: absolute; width: 22%; aspect-ratio: 1; border-radius: 50%; background: #2E211B; right: 14%; bottom: 14%"></div></div>
-<div style="position: absolute; top: -4px; left: -4px; padding: 6px 12px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">Comic</div>
-<figcaption style="padding: 14px 16px; font-weight: 700; font-size: 16px">[Piece title]</figcaption>
-</figure>
-<figure class="panel" style="margin: 0; position: relative; background: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; aspect-ratio: 1.414 / 1; background: #F8E7CE; overflow: hidden; border-bottom: 4px solid #2A1D16"><div style="position: absolute; width: 46%; height: 70%; border-radius: 50% 50% 0 0; background: #E07A3A; left: 27%; bottom: 0"></div><div style="position: absolute; width: 14%; aspect-ratio: 1; border-radius: 50%; background: #F0973A; left: 43%; top: 12%"></div></div>
-<div style="position: absolute; top: -4px; left: -4px; padding: 6px 12px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">Picture book</div>
-<figcaption style="padding: 14px 16px; font-weight: 700; font-size: 16px">[Piece title]</figcaption>
-</figure>
-<figure class="panel" style="margin: 0; position: relative; background: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16">
-<div style="position: relative; aspect-ratio: 1.414 / 1; background: #F1E6B8; overflow: hidden; border-bottom: 4px solid #2A1D16"><div style="position: absolute; width: 120%; height: 60%; border-radius: 50%; background: #A9C7A2; left: -10%; bottom: -30%"></div><div style="position: absolute; width: 90%; height: 50%; border-radius: 50%; background: #6E9478; right: -30%; bottom: -30%"></div></div>
-<div style="position: absolute; top: -4px; left: -4px; padding: 6px 12px; background: #F5C451; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase">Character</div>
-<figcaption style="padding: 14px 16px; font-weight: 700; font-size: 16px">[Piece title]</figcaption>
-</figure>
-</div>
+<script>
+// Filters
+const filterButtons = document.querySelectorAll(".filters button");
+filterButtons.forEach(b => b.addEventListener("click", () => {
+  filterButtons.forEach(x => x.setAttribute("aria-pressed", x === b));
+  document.querySelectorAll(".piece").forEach(p => p.hidden = !(b.dataset.f === "all" || p.dataset.cat === b.dataset.f));
+}));
 
-<section id="about" class="about" style="padding: 112px 0 96px">
-<div style="aspect-ratio: 4 / 5; border: 4px solid #2A1D16; box-shadow: 6px 6px 0 #2A1D16; background-color: #A9C7A2; background-image: radial-gradient(#BBD3B5 2px, transparent 2.4px); background-size: 16px 16px; display: flex; align-items: center; justify-content: center; font-weight: 700">[Self-portrait]</div>
-<div style="display: flex; flex-direction: column; gap: 20px; padding: 32px; border: 4px solid #2A1D16; background: #FFFFFF; box-shadow: 6px 6px 0 #2A1D16">
-<h2 style="margin: 0; font-family: 'Bangers', 'Lilita One', sans-serif; font-weight: 400; font-size: 56px; line-height: 1; letter-spacing: 0.03em">MEANWHILE, IN THE STUDIO…</h2>
-<p style="margin: 0; font-size: 18px; line-height: 1.65">I'm a Bergen, Norway-based illustrator with a degree in visual communication. I used to do logos for black metal bands and stuff. These days, I like to create illustrations that are a bit more whimsical and colorful and a bit less uh, well ... you know. I draw everything by hand digitally in Clip Studio Paint. And when I need to, I create my own references for a drawing in Blender.</p>
-<p style="margin: 0; font-size: 15px; font-weight: 700">Worked with — Dauthuz, Ghostheart Nebula, Vathr</p>
-</div>
-</section>
+// Lightbox
+const lb = document.getElementById("lightbox"), lbImg = document.getElementById("lb-img"), lbCap = document.getElementById("lb-cap");
+let opener = null;
+document.querySelectorAll(".piece .frame").forEach(btn => btn.addEventListener("click", () => {
+  const img = btn.querySelector("img"), fig = btn.closest(".piece");
+  opener = btn; lbImg.src = img.src; lbImg.alt = img.alt;
+  lbCap.textContent = fig.querySelector("figcaption b").textContent;
+  lb.hidden = false; document.getElementById("lb-close").focus();
+}));
+const closeLb = () => { lb.hidden = true; if (opener) opener.focus(); };
+document.getElementById("lb-close").addEventListener("click", closeLb);
+lb.addEventListener("click", e => { if (e.target === lb) closeLb(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) closeLb(); });
 
-<footer id="contact" style="margin-bottom: 40px; padding: 64px 48px; background: #B8481F; color: #FFFFFF; border: 4px solid #2A1D16; box-shadow: 8px 8px 0 #2A1D16; display: flex; flex-direction: column; gap: 18px; align-items: flex-start">
-<h2 style="margin: 0; font-family: 'Bangers', 'Lilita One', sans-serif; font-weight: 400; font-size: 84px; line-height: 1; letter-spacing: 0.03em">TO BE CONTINUED…</h2>
-<p style="margin: 0; font-size: 19px; font-weight: 700">Got a weird story that needs weird illustrations? Let's make the next chapter together.</p>
-<a href="mailto:gerritrijken@gmail.com" style="padding: 12px 22px; background: #FFFFFF; color: #2A1D16; text-decoration: none; border: 4px solid #2A1D16; font-family: 'Lilita One', sans-serif; font-size: 18px; letter-spacing: 0.04em">GERRITRIJKEN@GMAIL.COM</a>
-</footer>
-<div style="padding: 0 0 40px; font-size: 14px; font-weight: 700; display: flex; gap: 20px"><span>© Gerrit Rijken</span><a href="#top">Instagram</a><a href="#top">Behance</a></div>
-
-</div>
-</div>
+// Copy email
+document.querySelector(".copy").addEventListener("click", e => {
+  const b = e.currentTarget;
+  navigator.clipboard.writeText("gerritrijken@gmail.com")
+    .then(() => { b.textContent = "Copied"; setTimeout(() => b.textContent = "Copy email", 1600); })
+    .catch(() => {});
+});
+</script>
 </body>
 </html>
